@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="{{static_url('css/add.css')}}" type="text/css" />
+{% end %}
+{% block script %}
+<script type="text/javascript" src="{{static_url('js/add.js')}}"></script>
+{% end %}
+{% block title %}添加文章 - {% end %}
+
+{% block article %}
+<div class="article shadow">
+<form method="post">
+    <div class="title">标题:<input type="text" name="title" value="{% block a_title %}{% end  %}" /></div>
+    <div id="file-uploader">
+        <noscript>
+            <p>请打开浏览器的javascript支持。</p>
+        </noscript>
+    </div>
+<span class="file_label">临时文件：</span>
+    <div id="tempfile">
+{% for f in tmpfile %}
+<a href="javascript:add_to_article('{{f['filename'].split('/')[0]}}','{{f['filename'].split('/')[1]}}')" name="{{f['filename']}}">{{f['filename'].split('/')[1]}}</a>
+<a href="javascript:del_file('{{f['filename'].split('/')[0]}}','{{f['filename'].split('/')[1]}}')" name="{{f['filename']}}">删除</a>
+{% end %}
+    </div>
+<span class="file_label">文章附件：</span>
+    <div id="articlefile">
+{% block a_files %}
+{% end %}
+    </div>
+<input type="hidden" name="files" value="{% block a_files_input %}{% end %}">
+	<div class="content"><textarea name="content">{% block a_content %}{% end %}</textarea></div>
+    <div class="bottom">Tag：<input type="text" name="tags" value="{% block a_tags %}{% end %}" /></div>
+    <div class="tags_cloud">Tags Cloud:<br />
+{% for tag in tags_cloud %}
+<a href="javascript:addTag('{{tag['tag']}}')" style="font-size:{{tag['size']}}px;">{{tag['tag']}}</a>
+{% end %}
+    </div> 
+    <div><input type="submit" name="submit" value=" 提交 " /></div>
+</form>
+</div>
+{% end %}
+
+{% block pages %}
+{% end %}

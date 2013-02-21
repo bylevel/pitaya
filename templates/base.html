@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="{{static_url('css/base.css')}}" charset="utf-8" />
+		<link rel="alternate" type="application/rss+xml" title="Chronos RSS Feed" href="http://blog.plotcup.com/feed" />
+		{% block css %}{% end %}
+		<title>{%block title%}{%end%}Chronos</title>
+		<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7/jquery.min.js"></script>
+        <script type="text/javascript" src="{{static_url('js/base.js')}}"></script>
+		{% block script %}{% end %}
+	 </head>
+	 <body>
+         <form method="get" action="{{reverse_url('find')}}">
+			 <div class="headerbar shadow">
+				 <div>
+					 <a href="/" class="blogname">Chronos</a>
+					 <div class="headernav">
+						 <a href="{{reverse_url('article',0)}}">关于</a>
+						 <span><input name="keywords" type="text" value=""></span>
+						 <a href="javascript:void(0)" onclick="toggleNav('tags')">标签</a>
+						 <a href="javascript:void(0)" onclick="toggleNav('months')">月份归档</a>
+						 <a href="javascript:void(0)" onclick="toggleNav('links')">友情链接</a>
+						 <a href="{{reverse_url('feeds')}}" target="_blank">RSS订阅</a>
+						 {% if islogin %}<a href="{{reverse_url('add')}}">添加</a>{% end %}
+					 </div>
+				 </div>
+			 </div>
+		 </form>
+
+		 <div class="tags shadow">
+			 <div>
+				 {% for tag in tags_list %}
+				 <a href="{{reverse_url('tag',tag['tag'],1)}}" style="font-size:{{tag['size']}}px;">{{tag['tag']}}</a>
+				 {% end %}
+			 </div>
+		 </div>
+
+		 <div class="months shadow">
+			 <div>
+				 {% for month in months_list %}
+				 <a href="{{reverse_url('month',month['month'],1)}}">{{month['month']}} ({{month['count']}})</a>
+				 {% end %}
+			 </div>
+		 </div>
+
+		 <div class="links shadow">
+			 <div>
+				 <a href="http://www.mydev.cn/">lyping的博客</a>
+				 <a href="http://maoxren.com/">喵星人</a>
+				 <a href="http://d4blog.sinaapp.com">javalurker</a>
+			 </div>
+		 </div>
+		 {% block article_before %}{% end %}
+		 {% block article %}
+		 <div class="article shadow">
+			 <div class="title">新的一年，新的博客引擎</div>
+			 <div class="postdate">2012年02月14日 21:21:21</div>
+			 <div class="content">又一个年过去了。</div>
+			 <div class="bottom">Tagged <a href="#">archlinux</a>,<a href="#">pacman</a> | 0 Comments</div>
+		 </div>
+		 {% end %}
+
+		 {% block pages %}
+		 <div class="pages">
+			 <ul>
+                 {% if page > 1 %}<li><a href="{{urlfor('index')}}">&lt;&lt;</a></li>{% end %}
+				 {% if page-1 > 0 %}
+				 <li><a href="{{urlfor('indexpage', page-1)}}">&lt;</a></li>
+				 {% end %}
+				 {% for p in pages %}
+				 <li><a href="{{urlfor('indexpage', p)}}"{% if p==page %} class="current"{% end %}>{{p}}</a></li>
+				 {% end %}
+				 {% if page+1 < totalpage %}
+				 <li><a href="{{urlfor('indexpage', page+1)}}">&gt;</a></li>
+				 {% end %}
+				 {% if page<totalpage %}<li><a href="{{urlfor('indexpage', totalpage)}}">&gt;&gt;</a></li>{% end %}
+			 </ul>
+		 </div>
+		 {% end %}
+
+		 <div class="copyright">Powered by Pitaya on Tornado</div>
+	 </body>
+ </html>

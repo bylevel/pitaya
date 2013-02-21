@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{%block title%}{{tag_name}} - {%end%}
+{% block article_before %}<div class="article_before shadow"><span><strong>标签：</strong>{{tag_name}}</span></div>{% end %}
+{% block pages %}
+<div class="pages">
+    <ul>
+        {% if page > 1 %}<li><a href="{{urlfor('tag', tag_name, 1)}}">&lt;&lt;</a></li>{% end %}
+        {% if page-1 > 0 %}
+        <li><a href="{{urlfor('tag', tag_name, page-1)}}">&lt;</a></li>
+        {% end %}
+        {% for p in pages %}
+        <li><a href="{{urlfor('tag', tag_name, p)}}"{% if p==page %} class="current"{% end %}>{{p}}</a></li>
+        {% end %}
+        {% if page+1 < totalpage %}
+        <li><a href="{{urlfor('tag', tag_name, page+1)}}">&gt;</a></li>
+        {% end %}
+        {% if page<totalpage %}<li><a href="{{urlfor('tag', tag_name, totalpage)}}">&gt;&gt;</a></li>{% end %}
+    </ul>
+</div>
+{% end %}
+

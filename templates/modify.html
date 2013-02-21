@@ -1,0 +1,18 @@
+{% extends "add.html" %}
+{% block title %}修改文章 - {% end %}
+{% block a_title %}{{article['title']}}{% end  %}
+
+
+{% block a_files %}
+	{% if article.has_key('files') %}
+		{% for f in article['files']%}
+			<a name="{{f['url']}}" href="/static/upload/{{f['url']}}" target="_blank">{{f['filename']}}</a> <a name="{{f['url']}}" href="javascript:remove_from_article('{{f['prefix']}}','{{f['filename']}}')">移除</a>
+		{% end %}
+	{% end %}
+{% end %}
+{% block a_files_input %}{% if article.has_key('files') and len(article['files']) > 0 %}{{article['files'].pop()['url']}}{% for f in article['files'] %},{{f['url']}}{% end %}{% end %}{% end %}
+
+
+{% block a_content %}{{article['content']}}{% end %}
+
+{% block a_tags %}{% if article.has_key('tags') %}{{','.join(article['tags'])}}{% end %}{% end %}

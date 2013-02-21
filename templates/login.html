@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}登陆Pitaya - {% end %}
+
+{% block script %}
+<script type="text/javascript" src="{{static_url('js/login.js')}}"></script>
+{% end %}
+
+{% block article %}
+<div class="article shadow">
+<form method="post">
+  <div class="login">
+    <label>用户名：<input type="text" name="loginname" class="text" value="" /></label>
+    <label>密　码：<input type="password" name="loginpass" class="text" value="" /></label>
+    <input type="submit" value="登陆" />
+  </div>
+</form>
+</div>
+{% end %}
+
+{% block pages %}{% end %}

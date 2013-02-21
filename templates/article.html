@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{%block title%}{{article['title']}} - {%end%}
+{% block article %}
+<div class="article shadow">
+	<div class="title">{{article['title']}}{% if islogin %} <a href="{{reverse_url('modify',article['id'])}}">修改</a> <a href="{{reverse_url('del',article['id'])}}" onclick="return del_confirm({{article['id']}})">删除</a>{% end %}</div>
+	<div class="postdate">{{article['posttime'].strftime('%Y年%m月%d日 %H:%M:%S')}}</div>
+	<div class="content">{% raw article['render'] %}</div>
+	<div class="bottom">Tagged {% if len(article['tags'])>0 %}<a href="{{reverse_url('tag',article['tags'][0],1)}}">{{article['tags'][0]}}</a>{% for i in range(1,len(article['tags']))%}, <a href="{{reverse_url('tag',article['tags'][i],1)}}">{{article['tags'][i]}}</a>{% end %}{% end %}</div>
+    <!-- Duoshuo Comment BEGIN -->
+        <div class="ds-thread" data-thread-key="{{article['id']}}" 
+        data-title="{{article['title']}}"></div>
+        <script type="text/javascript">
+        var duoshuoQuery = {short_name:"chronos"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'http://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+        </script>
+    <!-- Duoshuo Comment END -->
+</div>
+{% end %}
+{% block pages %}{% end %}

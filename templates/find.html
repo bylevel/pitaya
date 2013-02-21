@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+{%block title%}{{keywords}} - {%end%}
+{% block article_before %}<div class="article_before shadow"><span><strong>搜索内容：</strong>{{keywords}}</span><span>共{{totalrows}}个结果</span></div>{% end %}
+{% block pages %}
+<div class="pages">
+    <ul>
+        {% if page > 1 %}<li><a href="{{urlfor('find', keywords=keywords, page=1)}}">&lt;&lt;</a></li>{% end %}
+        {% if page-1 > 0 %}
+        <li><a href="{{urlfor('find', keywords=keywords, page=page-1)}}">&lt;</a></li>
+        {% end %}
+        {% for p in pages %}
+        <li><a href="{{urlfor('find', keywords=keywords, page=p)}}"{% if p==page %} class="current"{% end %}>{{p}}</a></li>
+        {% end %}
+        {% if page+1 < totalpage %}
+        <li><a href="{{urlfor('find', keywords=keywords, page=page+1)}}">&gt;</a></li>
+        {% end %}
+        {% if page<totalpage %}<li><a href="{{urlfor('find', keywords=keywords, page=totalpage)}}">&gt;&gt;</a></li>{% end %}
+    </ul>
+</div>
+{% end %}
