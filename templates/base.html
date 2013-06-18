@@ -7,7 +7,7 @@
 		<link rel="alternate" type="application/rss+xml" title="Chronos RSS Feed" href="http://blog.plotcup.com/feed" />
 		{% block css %}{% end %}
 		<title>{%block title%}{%end%}Chronos</title>
-		<script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7/jquery.min.js"></script>
+		<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="{{static_url('js/base.js')}}"></script>
 		{% block script %}{% end %}
 	 </head>
@@ -18,7 +18,7 @@
 					 <a href="/" class="blogname">Chronos</a>
 					 <div class="headernav">
 						 <a href="{{reverse_url('article',0)}}">关于</a>
-						 <span><input name="keywords" type="text" value=""></span>
+						 <input name="keywords" type="text" value="" placeholder="请输入关键词搜索">
 						 <a href="javascript:void(0)" onclick="toggleNav('tags')">标签</a>
 						 <a href="javascript:void(0)" onclick="toggleNav('months')">月份归档</a>
 						 <a href="javascript:void(0)" onclick="toggleNav('links')">友情链接</a>

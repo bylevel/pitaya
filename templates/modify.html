@@ -6,11 +6,11 @@
 {% block a_files %}
 	{% if article.has_key('files') %}
 		{% for f in article['files']%}
-			<a name="{{f['url']}}" href="/static/upload/{{f['url']}}" target="_blank">{{f['filename']}}</a> <a name="{{f['url']}}" href="javascript:remove_from_article('{{f['prefix']}}','{{f['filename']}}')">移除</a>
+			<a name="{{f}}" href="/static/upload/{{f}}" target="_blank">{{f.split('/')[1]}}</a> <a name="{{f}}" href="javascript:remove_from_article('{{f.split('/')[0]}}','{{f.split('/')[1]}}')">移除</a>
 		{% end %}
 	{% end %}
 {% end %}
-{% block a_files_input %}{% if article.has_key('files') and len(article['files']) > 0 %}{{article['files'].pop()['url']}}{% for f in article['files'] %},{{f['url']}}{% end %}{% end %}{% end %}
+{% block a_files_input %}{% if article.has_key('files') and len(article['files']) > 0 %}{{article['files'].pop()}}{% for f in article['files'] %},{{f}}{% end %}{% end %}{% end %}
 
 
 {% block a_content %}{{article['content']}}{% end %}

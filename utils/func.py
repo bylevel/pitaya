@@ -172,8 +172,8 @@ def send_email( _to, _subject, _msg):
         #发送邮件
         smtp = smtplib.SMTP()
         smtp.connect('smtp.163.com:25')
-        smtp.login('email user', 'password')
-        smtp.sendmail('email', _to, msg.as_string())
+        smtp.login('xielong1024', '0487561')
+        smtp.sendmail('xielong1024@163.com', _to, msg.as_string())
         smtp.quit()
         return True
     except Exception, e:

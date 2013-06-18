@@ -1,22 +1,17 @@
 #网页加载完成时
-$ ->
-  $('input[name=\"keywords\"]').focus ->
-    $("div.headernav span:first").removeClass()
-    $("input[name=\"keywords\"]").removeClass()
-    $("div.headernav span:first").addClass "input"
-    $("input[name=\"keywords\"]").addClass "input"
-
-  $("input[name=\"keywords\"]").blur ->
-    $("div.headernav span:first").removeClass "input"
-    $("input[name=\"keywords\"]").removeClass "input"
-    unless $("input[name=\"keywords\"]").val() is ""
-      $("div.headernav span:first").addClass "exists"
-      $("input[name=\"keywords\"]").addClass "exists"
-
-#所有内容下载完成时
-$(window).load ->
-  $.get "/static/img/search-exists.jpg"
-  $.get "/static/img/search-input.jpg"
+#$ ->
+#  $('input[name=\"keywords\"]').focus ->
+#    $("div.headernav span:first").removeClass()
+#    $("input[name=\"keywords\"]").removeClass()
+#    $("div.headernav span:first").addClass "input"
+#    $("input[name=\"keywords\"]").addClass "input"
+#
+#  $("input[name=\"keywords\"]").blur ->
+#    $("div.headernav span:first").removeClass "input"
+#    $("input[name=\"keywords\"]").removeClass "input"
+#    unless $("input[name=\"keywords\"]").val() is ""
+#      $("div.headernav span:first").addClass "exists"
+#      $("input[name=\"keywords\"]").addClass "exists"
 
 toggleNav = (name) ->
   names = [ "tags", "months", "links" ]

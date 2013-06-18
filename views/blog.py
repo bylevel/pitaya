@@ -1,5 +1,6 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# encoding: utf-8
+
 from utils.requesthandler import BlogHandler, AuthBlogHandler
 from utils.func import Pagination, date_add, fetchall, fetchone, search
 from utils.rst import html_body
@@ -224,7 +225,8 @@ class ModifyHandler(AuthBlogHandler):
         cur.execute('SELECT id, title, content, posttime, '
                     'ARRAY('
                     'SELECT tag FROM link_tags_articles WHERE link_tags_articles.article_id = articles.id'
-                    ') as tags '
+                    ') as tags,'
+                    'ARRAY(SELECT filename FROM link_files_articles WHERE link_files_articles.article_id = articles.id) as files '
                     'FROM articles WHERE id = %s', (id,))
         self.d['article'] = fetchone(cur)
         cur.execute('SELECT filename FROM files '

@@ -4,7 +4,7 @@ body {
   font-family: Arial, "宋体";
   //默认字体大小
   font-size: 12px;
-  padding: 0 0 0 0;
+  padding: 40px 0 0 0;
   margin: 0 0 0 0;
   color: #444;
   background: url("../img/background.jpg");
@@ -41,8 +41,10 @@ a {
 
 .headerbar {
   height: 40px;
+  width: 100%;
   background-color: #2d2d2d;
-  position: relative;
+  position: fixed;
+  top: 0px;
   z-index: 2;
   div {
     width: 840px;
@@ -79,43 +81,21 @@ a {
         text-decoration: underline;
       }
     }
-    span {
+    input {
       width: 230px;
-      height: 24px;
-      display: inline-block;
-      background: url("../img/search.jpg");
-      &.exists {
+      height: 13px;
+      color: #fff;
+      line-height: 13px;
+      border: 1px #515151 solid;
+      margin-top: -4px;
+      background: #666666;
+      &:focus {
         width: 230px;
-        height: 24px;
-        display: inline-block;
-        background: url("../img/search-exists.jpg");
-      }
-      &.input {
-        width: 230px;
-        height: 24px;
-        display: inline-block;
-        background: url("../img/search-input.jpg");
-      }
-      input {
-        width: 214px;
-        height: 22px;
-        color: #fff;
-        line-height: 22px;
-        border: 0;
-        margin-top: -4px;
-        padding-left: 8px;
-        padding-right: 8px;
-        background: transparent;
-        &.input {
-          width: 214px;
-          height: 22px;
-          color: #000;
-          line-height: 22px;
-          border: 0;
-          padding-left: 8px;
-          padding-right: 8px;
-          background: transparent;
-        }
+        height: 13px;
+        color: #000;
+        line-height: 13px;
+        border: 1px #838383 solid;
+        background: #F5F5F5;
       }
     }
   }
@@ -125,7 +105,7 @@ a {
   width: 828px;
   min-height: 80px;
   background: #fff;
-  position: absolute;
+  position: fixed;
   top: -3000px;
   left: 50%;
   margin-left: -414px;

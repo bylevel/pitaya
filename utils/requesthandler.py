@@ -1,9 +1,11 @@
-#-*- encoding:utf-8 -*-
+#!/usr/bin/env python
+# encoding: utf-8
+
 from tornado import web
 from utils.func import fetchall
 import psycopg2, urllib, urlparse
 
-db = psycopg2.connect(host='localhost', database='pitaya', user='postgres', password='password', port=5432)
+db = psycopg2.connect(host='localhost', database='pitaya', user='postgres', password='', port=5432)
 
 class BaseHandler(web.RequestHandler):
     """

@@ -1,10 +1,11 @@
-#-*- encoding:utf-8 -*-
+#!/usr/bin/env python
+# encoding: utf-8
 
 from utils.requesthandler import AuthBlogHandler
 from utils.func import json, prefix_rand, fetchall, fetchone
 from urllib import unquote
 from hashlib import md5
-import os
+import os, logging
 
 class UploaderHandler(AuthBlogHandler):
     """
@@ -65,6 +66,9 @@ class DelfileHandler(AuthBlogHandler):
             cur.execute('DELETE FROM files WHERE filename = %s', (key,))
             self.db.commit()
         except Exception, e:
-            print e
+            # 如果出错则回滚事务
+            self.db.rollback()
+            logging.error(str(e))
+
         return self.write('OK')
         
